@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio – Alina Fonseca</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f0f2c;
+      color: white;
+    }
+
+    header.navbar-capsula {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: rgba(10, 0, 30, 0.7);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 30px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .nav-links a:hover {
+      background: #ff5fd2;
+      color: #0f0f2c;
+    }
+
+  .redes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 40px; /* este valor aleja los íconos del borde derecho */
+}
+
+
+    .redes a img {
+      width: 28px;
+      height: 28px;
+      transition: transform 0.3s;
+    }
+
+    .redes a img:hover {
+      transform: scale(1.2);
+    }
+
+    .redes a.github img {
+      filter: drop-shadow(0 0 6px #b36ffb) saturate(200%) contrast(120%);
+    }
+
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 0 20px;
+    }
+
+    #videoFondo {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+      z-index: -2;
+    }
+
+    .overlay-hero {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 15, 44, 0.6);
+      z-index: -1;
+    }
+
+    .hero-content h2 {
+      font-size: 2.5rem;
+      color: #ff5fd2;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #ff5fd2;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .hero-content p {
+      color: #ddd;
+      margin-top: 10px;
+    }
+
+    .boton-glow {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 28px;
+      background: #ff5fd2;
+      color: #fff;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 15px #ff5fd2aa;
+      transition: transform 0.3s ease;
+    }
+
+    .boton-glow:hover {
+      transform: scale(1.1);
+    }
+
+    .about-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 100px 10%;
+      background: url('https://images.unsplash.com/photo-1604079628048-9436afadf2a4?auto=format&fit=crop&w=2100&q=80') center/cover fixed no-repeat;
+      position: relative;
+    }
+
+    .about-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    .about-wrapper > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+    }
+
+    .about-text h2 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #ff5fd2, #ff8cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    .about-text .intro {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      line-height: 1.6;
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    .about-glow-box {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 25px #ff5fd2aa;
+      backdrop-filter: blur(8px);
+    }
+
+    .tech-orbit {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      justify-items: center;
+      align-items: center;
+      min-width: 280px;
+    }
+
+    .tech-orbit img {
+      width: 60px;
+      height: 60px;
+      filter: drop-shadow(0 0 6px #ff5fd2cc);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @media (max-width: 768px) {
+      header.navbar-capsula {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .redes {
+        margin-top: 10px;
+        margin-left: 0;
+      }
+
+      .about-wrapper {
+        flex-direction: column;
+      }
+      
+    }
+    @keyframes floatUpDown {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.card-float {
+  animation: floatUpDown 4s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+ .logo-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ff5fd2, #8a2be2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 5px #ff5fd2, 0 0 10px #8a2be2;
+    }
+    to {
+      text-shadow: 0 0 10px #ff5fd2, 0 0 20px #8a2be2;
+    }
+  }
+  .card-proyecto {
+  background: #0d0b1d;
+  border-radius: 20px;
+  width: 300px;
+  overflow: hidden;
+  box-shadow: 0 0 20px #ff5fd273;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.card-proyecto:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 0 35px #ff5fd2a0;
+}
+.card-img {
+  width: 300%;
+  height: 300px;
+  object-fit: cover;
+}
+.card-contenido {
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+.card-contenido h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+.card-contenido p {
+  font-size: 0.93rem;
+  color: #ccc;
+  line-height: 1.4;
+}
+.tecnologias {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.tecnologias img {
+  width: 98px;
+}
+ #project-insights {
+    padding: 60px 20px;
+    background: #0d0b1d;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+  }
+
+  #project-insights h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    color: #ff5fd2;
+    margin-bottom: 50px;
+    animation: fadeInDown 1s ease-out;
+  }
+
+  .insight {
+    max-width: 850px;
+    margin: 0 auto 50px auto;
+    background: #1a162e;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255, 95, 210, 0.2);
+    animation: float 4s ease-in-out infinite, fadeInUp 1s ease forwards;
+    opacity: 0;
+  }
+
+  .insight p {
+    font-size: 1rem;
+    line-height: 1.8;
+    animation: textFloat 4s ease-in-out infinite;
+  }
+
+  .insight strong {
+    font-size: 1.2rem;
+    color: #ffb3ec;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .line-separator {
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(to right, #ff5fd2, transparent);
+    margin: 30px auto;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes textFloat {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+  
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar-capsula">
+  <div class="logo">
+  <span class="logo-text">Alina FM</span>
+  </div>
+    <nav class="nav-links">
+      <a href="#about">About Me</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+    </nav>
+    <div class="redes">
+      <a href="https://www.linkedin.com/in/alina-fonseca-mart%C3%ADnez-7b5ba4243/" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
+      </a>
+      <a href="https://www.instagram.com/alinita_fonseca/?next=%2F" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+      </a>
+      <a class="github" href="https://github.com/Alina2003fonseca" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" />
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <video autoplay muted loop id="videoFondo">
+      <source src="../video1.mp4" type="video/mp4" />
+    
+    </video>
+    <div class="overlay-hero"></div>
+    <div class="hero-content">
+    <h2>Hello, I'm Alina, a web developer in progress</h2>
+<p>Passionate about creating stylish and creative websites.</p>
+<a href="#projects" class="boton-glow">View my projects</a>
+
+
+    </div>
+  </section>
+
+  <!-- ABOUT ME -->
+  <section id="about" class="about-wrapper">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p class="intro">
+        Hello! I'm <strong>Alina Fonseca</strong> — a passionate and creative web developer in progress <br>
+        I'm currently studying <strong>Systems Engineering</strong> and I love turning ideas into beautiful digital experiences with glam .
+      </p>
+      <div class="about-glow-box">
+        <p>I create stylish, interactive and impactful websites.</p>
+        <p>I mix design, code, and personality to bring ideas to life.</p>
+        <p>I believe that creativity + code = magic.</p>
+      </div>
+    </div>
+    <div class="tech-orbit">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript">
+      <img src="https://cdn-icons-png.flaticon.com/512/919/919830.png" alt="PHP">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png" alt="MySQL">
+      <img src="https://cdn-icons-png.flaticon.com/512/6132/6132221.png" alt="Visual Studio Code">
+      
+    </div>
+  </section>
+  <!-- SKILLS -->
+<!-- SKILLS -->
+<!-- SKILLS -->
+<section id="skills" style="position: relative; z-index: 1; overflow: hidden;">
+
+  <!-- Video de fondo -->
+  <video autoplay muted loop playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+  <source src="../video2.mp4" type="video/mp4" />
+ 
+</video>
+
+
+  <!-- Contenido por encima del video -->
+  <div style="padding: 100px 5% 80px; text-align: center; background-color: rgba(15, 15, 44, 0.7); position: relative; z-index: 2;">
+    
+    <h2 style="font-size: 2.8rem; margin-bottom: 0.5rem;">My Knowledge</h2>
+    <p style="font-family: 'Cedarville Cursive', cursive; font-size: 1.2rem; color: #ccc;">And learning...</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; margin-top: 40px;">
+  <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML" style="width: 60px; height: 60px;" />
+  <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS" style="width: 60px; height: 60px;" />
+  <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript" style="width: 60px; height: 60px;" />
+  <img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" alt="Java" style="width: 60px; height: 60px;" />
+  <img src="https://cdn-icons-png.flaticon.com/512/919/919830.png" alt="PHP" style="width: 60px; height: 60px;" />
+  <img src="https://cdn-icons-png.flaticon.com/512/919/919836.png" alt="MySQL" style="width: 60px; height: 60px;" />
+  <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Dart" style="width: 60px; height: 60px;" />
+  <img src="https://cdn-icons-png.flaticon.com/512/906/906324.png" alt="VS Code" style="width: 60px; height: 60px;" />
+</div>
+
+</section>
+
+
+<section id="project-insights" style="padding: 50px 20px; background: #0d0b1d; color: white;">
+  <h2 style="text-align: center; margin-bottom: 30px;">Project Insights</h2>
+
+  <div style="max-width: 800px; margin: auto; font-size: 1rem; line-height: 1.6;">
+    <p><strong>Soda a los Chizos:</strong><br>
+      This project started as an idea to capture the essence of a typical Costa Rican "soda" (small local restaurant). I focused on a warm and cozy visual design using HTML and CSS to reflect the local food culture. The layout was designed to be intuitive, friendly, and visually appealing.
+    </p>
+
+    <hr style="border: none; height: 2px; background: linear-gradient(to right, #ff5fd2, transparent); margin: 40px 0;">
+
+    <p><strong>Supermarket System:</strong><br>
+      A web system I developed as part of my academic work, focused on managing products, shopping carts, and order records. I used PHP for server-side logic and MySQL as the database, all integrated in XAMPP. I learned to handle user sessions and build full CRUD functionalities.
+    </p>
+
+    <hr style="border: none; height: 2px; background: linear-gradient(to right, #ff5fd2, transparent); margin: 40px 0;">
+
+    <p><strong>Panadería Dulce Trigo:</strong><br>
+      One of my most complete and ambitious projects. I combined Oracle and PHP within XAMPP to create a functional bakery website where users can register, log in, browse products, and place orders. The main challenge was establishing smooth communication between Oracle and the web environment.
+    </p>
+
+    <hr style="border: none; height: 2px; background: linear-gradient(to right, #ff5fd2, transparent); margin: 40px 0;">
+
+    <p><strong>Tú Outfit CR:</strong><br>
+      An online clothing store built in Visual Studio 2022 using C#. The website was created with the .NET MVC framework and integrates MySQL for database management. I also added Power BI to generate product and sales reports for business insights.
+    </p>
+
+    <hr style="border: none; height: 2px; background: linear-gradient(to right, #ff5fd2, transparent); margin: 40px 0;">
+
+    <p><strong>Perfumería El Guarco:</strong><br>
+      A web application designed for a local perfume store. I used HTML, CSS, PHP, and Power BI to build the system and present business data visually. This project helped me sharpen my UI design skills and data integration techniques for client-facing websites.
+    </p>
+  </div>
+</section>
+
+
+
+
+
+<!-- PROJECTS -->
+<!-- PROJECTS -->
+<section id="projects" style="padding: 100px 5% 80px; background-color: #0b0b22; color: white; text-align: center;">
+  <h2 style="font-size: 2.8rem; margin-bottom: 1rem;">My Projects</h2>
+
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px;">
+    
+    <!-- Project 1 -->
+
+<!-- CONTENEDOR -->
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px;">
+
+  <!-- CARD 1 -->
+  <!-- CONTENEDOR GENERAL -->
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px;">
+
+  <!-- CARD 1 -->
+  <div class="card-proyecto">
+    <img src="../img/IMG1.png" alt="Soda a los Chizos" class="card-img" />
+    <div class="card-contenido">
+      <h3>Soda a los Chizos</h3>
+      <p>Website for a Costa Rican soda restaurant, with a warm visual style and local food sections.</p>
+      <div class="tecnologias">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS">
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card-proyecto">
+    <img src="../img/IMG2.png" alt="Supermarket System" class="card-img" />
+    <div class="card-contenido">
+      <h3>Supermarket System</h3>
+      <p>Academic PHP project with database integration for managing products, cart and purchases.</p>
+      <div class="tecnologias">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS">
+       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="35" />
+       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="35" />
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+<!-- CARD 3 -->
+<div class="card-proyecto" style="width: 360px; padding-bottom: 30px; border-radius: 20px; background: #111132; box-shadow: 0 0 25px #ff5fd273;">
+  <img src="../img/IMG3.png" alt="Panadería Dulce Trigo" class="card-img" style="width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid #222;" />
+  <div class="card-contenido" style="padding: 20px;">
+    <h3 style="margin-bottom: 10px;">Dulce Trigo</h3>
+    <p style="font-size: 0.95rem;">Bakery website developed using XAMPP, Oracle, PHP, HTML and CSS. It allows managing products, user accounts, and purchase orders.</p>
+    <div class="tecnologias" style="display: flex; justify-content: center; gap: 12px; margin-top: 15px;">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML" width="28">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS" width="28">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="35" />
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png" alt="Oracle" width="28">
+ 
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- CARD 4 -->
+<div class="card-proyecto">
+  <img src="../img/IMG4.png" alt="Tu Outfit CR" class="card-img" />
+  <div class="card-contenido">
+    <h3>Tú Outfit CR</h3>
+    <p>Online clothing store developed in Visual Studio 2022 using .NET and MySQL. Future integration with Power BI for business analytics.</p>
+    <div class="tecnologias" style="display: flex; justify-content: center; gap: 12px; margin-top: 15px;">
+      <!-- HTML -->
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML" width="28" height="28">
+      <!-- CSS -->
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS" width="28" height="28">
+      <!-- JavaScript -->
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript" width="28" height="28">
+      <!-- C# -->
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="Csharp" width="28" height="28">
+      <!-- MySQL -->
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="28" height="28">
+      <!-- Power BI -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" width="28" height="28">
+    </div>
+  </div>
+</div>
+<div class="card-proyecto">
+  <img src="../img/IMG5.png" alt="Perfumería El Guarco" class="card-img" />
+  <div class="card-contenido">
+    <h3>Perfumería El Guarco</h3>
+    <p>Website for a Costa Rican perfume store, built with HTML, CSS, PHP and Power BI for data analytics.</p>
+    <div class="tecnologias" style="display: flex; justify-content: center; gap: 12px; margin-top: 15px;">
+      <!-- HTML -->
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML" width="28" height="28">
+      <!-- CSS -->
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS" width="28" height="28">
+      <!-- PHP -->
+      <img src="https://cdn-icons-png.flaticon.com/512/919/919836.png" alt="PHP" width="28" height="28">
+      <!-- Power BI -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" width="28" height="28">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript" width="28" height="28">
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ESTILO CON TARJETAS MÁS GRANDES -->
+<style>
+.card-proyecto {
+  background: #111132;
+  border-radius: 22px;
+  width: 380px;
+  height: 530px;
+  overflow: hidden;
+  box-shadow: 0 0 25px #ff5fd273;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.card-proyecto:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 35px #ff5fd2c0;
+}
+.card-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-bottom: 1px solid #222;
+}
+.card-contenido {
+  padding: 25px;
+  color: white;
+  text-align: center;
+  flex-grow: 1;
+}
+.card-contenido h3 {
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+.card-contenido p {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+.tecnologias {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+.tecnologias img {
+  width: 35px;
+}
+</style>
+
+
+
+
+  </div>
+</section>
+<!-- CONTACT / FOOTER -->
+<section id="contacto" style="background-color: #0b0b22; color: white; text-align: center; padding: 60px 5% 40px; border-top: 1px solid #222;">
+  <h2 style="font-size: 2rem; margin-bottom: 10px;">Let's Connect</h2>
+  <p style="font-size: 1.05rem; margin-bottom: 20px;">You can reach me anytime through the following contact details:</p>
+
+  <div style="font-size: 1rem; line-height: 2;">
+    <p><strong>Name:</strong> Alina Fonseca</p>
+    <p><strong>Email:</strong> <a href="mailto:alina@example.com" style="color: #ff5fd2; text-decoration: none;">alinapaolafonseca18@gamil.com</a></p>
+    <p><strong>Phone:</strong> +506 8828-9816</p>
+  </div>
+
+  <hr style="margin: 40px auto 20px; width: 60%; border-color: #444;">
+
+  <p style="font-size: 0.9rem; color: #aaa;">© 2025 Alina Fonseca. All rights reserved.</p>
+</section>
+
+</body>
+</html>
